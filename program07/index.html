@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        /* Resetting defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            /* Add background image */
+            background-image: url('https://example.com/your-image.jpg'); /* Replace with your image URL */
+            background-size: cover;  /* Ensure the image covers the entire screen */
+            background-position: center;  /* Center the image */
+            background-attachment: fixed;  /* Fixed background when scrolling */
+            color: black;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Stopwatch counter style */
+        #counter {
+            font-size: 5rem;
+            font-weight: bold;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1); /* Slightly opaque white background */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        #counter:hover {
+            transform: scale(1.1);
+        }
+
+        /* Button container - horizontal layout */
+        .button-container {
+            display: flex;
+            justify-content: space-evenly;  /* Evenly spaced buttons */
+            align-items: center;
+            width: 70%;  /* Ensure buttons take up good portion of width */
+            margin-top: 20px;
+        }
+
+        /* Common button styles */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s ease-in-out;
+            font-weight: bold;
+            outline: none;
+        }
+
+        /* Button hover and active effects */
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(2px);
+        }
+
+        /* Start button */
+        button.start {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+        }
+
+        /* Stop button */
+        button.stop {
+            background: linear-gradient(135deg, #f44336, #e53935);
+            color:black;
+        }
+
+        /* Restart button */
+        button.restart {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Increment Stopwatch</h1>
+    <p id="counter">0</p>
+    <div class="button-container">
+        <button class="start" onclick="start()">Start</button>
+        <button class="stop" onclick="stop()">Stop</button>
+        <button class="restart" onclick="restart()">Restart</button>
+    </div>
+
+    <script>
+        let count = 0;
+        let Interval;
+
+        function start() {
+            if (!Interval) {
+                Interval = setInterval(() => {
+                    count++;
+                    document.getElementById("counter").textContent = count;
+                }, 1000);
+            }
+        }
+
+        function stop() {
+            clearInterval(Interval);
+            Interval = null;
+        }
+
+        function restart() {
+            stop();
+            count = 0;
+            document.getElementById("counter").textContent = count;
+        }
+    </script>
+</body>
+</html>
