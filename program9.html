@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider{
+            text-align: center;
+            height: 400px;
+            width: 60%;
+            margin: auto;
+            position: relative;
+        }
+        .slider img{
+            height: 145%;
+            width: 100%;
+            object-fit: contain;
+        }
+        button{
+            padding: 20px;
+            border: none;
+            background-color: gray;
+            border-radius:10px ;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <img src="./imagess/63f3b4d8774acf59629868eb0c0f6d46.jpg"alt="" id="displayimg">
+        <button id="next">next</button>
+        <button id="prev">previous</button>        
+
+    </div>
+    <script>
+        let img=["imagess/63f3b4d8774acf59629868eb0c0f6d46.jpg","imagess/94860bbb558dc9f84abed5cf57c88468.jpg","imagess/e0ea414a1c472bc8a105da13d2b34883.jpg","imagess/images (1).jpeg","imagess/images.jpeg"]
+        let currentIndex=0;
+        let display=document.getElementById("displayimg");
+        let previousBTn=document.getElementById("prev");
+        let nextBTn=document.getElementById("next");
+        nextBTn.addEventListener("click",()=>{
+            currentIndex=(currentIndex+1) % img.length;
+            display.src=img[currentIndex];
+        });
+        previousBTn.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + img.length) % img.length; 
+            display.src =img[currentIndex];
+        });
+        setInterval(()=>{
+             currentIndex=(currentIndex+1) % img.length;
+              display.src=img[currentIndex];
+        },2000);
+    </script>
+</body>
+</html>
