@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <style>
+ body {
+ font-family: Arial, sans-serif;
+ padding: 20px;
+ }
+ #status {
+ font-weight: bold;
+ color: blue;
+ }
+ #userData {
+ margin-top: 20px;
+ }
+ li {
+ margin: 5px 0;
+ }
+ .error {
+ color: red;
+ }
+ </style>
+</head>
+<body>
+    <h2>User Information Dashboard</h2>
+    <button onclick="loadData()">Load Data</button>
+    <div id="output"></div>
+
+    <script>
+    function loadData() {
+        const output = document.getElementById('output');
+        fetch('https://fakestoreapi.com/users')
+            .then(response => response.json())
+            .then(data => {
+                const list = data.map(
+                    user => `<li>User: ${user.username} - Password: ${user.password}</li>`
+                ).join('');
+                output.innerHTML = `<ul>${list}</ul>`;
+            })
+            .catch(error => {
+                output.innerHTML = `<p style="color: red;">Error loading data: ${error}</p>`;
+            });
+    }
+    </script>
+</body>
+</html>
